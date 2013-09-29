@@ -21,6 +21,7 @@
           articles[i].style["margin-top"] = -(yOffset-(articleStates[i].min)) + "px";
           articles[i].style["z-index"] = "2";
         } else {
+          articles[i].style["margin-top"] = "0px";
           articles[i].style["z-index"] = "1";
         }
       }
