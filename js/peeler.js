@@ -26,8 +26,8 @@
 
       for (; i < len; i++) {
         if (yOffset <= articleStates[i].max && yOffset >= articleStates[i].min) {
-          articles[i].style["margin-top"] = -(yOffset-(articleStates[i].min)) + "px";
-          articles[i].style["z-index"] = ABOVE;
+          articles[i].style.marginTop = -(yOffset-(articleStates[i].min)) + "px";
+          articles[i].style.zIndex = ABOVE;
           triggered = true;
           curr = i;
           break;
@@ -36,8 +36,8 @@
 
       for (;j < len; j++) {
         if (i !== curr) {
-          articles[i].style["margin-top"] = "0px";
-          articles[i].style["z-index"] = below--;
+          articles[i].style.marginTop = "0px";
+          articles[i].style.zIndex = below--;
         }
         i++;
         // Reset at rotation point
@@ -48,12 +48,12 @@
 
       // Case where it goes above the fold for OSX trackpads
       if (!triggered) {
-          articles[0].style["margin-top"] = "0px";
-          articles[0].style["z-index"] = ABOVE;
+          articles[0].style.marginTop = "0px";
+          articles[0].style.zIndex = ABOVE;
       }
     };
 
-    articles[0].style["z-index"] = "2";
+    articles[0].style.zIndex = "2";
 
     // Set each of the articles according to the aspect ratio
     for (i = 0, len = articles.length; i < len; i++) {
