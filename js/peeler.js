@@ -59,9 +59,7 @@
     for (i = 0, len = articles.length; i < len; i++) {
       article = articles[i];
       // viewport with aspectRatio
-      //height = screen.height;
-
-      height = root.innerWidth * aspectRatio;
+      height = screen.height;
       article.style.height = height + "px";
       articleStates.push({min: bodyHeight, max: bodyHeight+height});
       bodyHeight += height;

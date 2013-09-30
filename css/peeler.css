@@ -22,9 +22,20 @@ article {
 
 article .background {
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 100%;
   display: block;
-  z-index: 0;
+}
+
+article > h1 {
+  position: absolute;
+  width: 100%;
+  font-size: 48px;
+  top: 335px;
+  left: 250px;
+}
+
+article .header-caption {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  color: rgba(255, 255, 255, 1);
 }
