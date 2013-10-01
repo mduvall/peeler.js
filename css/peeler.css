@@ -28,11 +28,6 @@ article .background {
   height: 100%;
   width: 100%;
   display: block;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
 }
 
 article > h1 {

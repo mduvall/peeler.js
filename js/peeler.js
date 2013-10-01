@@ -69,8 +69,9 @@
 
     for (i = 0, len = backgroundImages.length; i < len; i++) {
       backgroundImage = backgroundImages[i];
-      backgroundImage.style.backgroundImage = "url(" + backgroundImage.src + ")";
-      backgroundImage.src = "";
+      backgroundImage.style.background = "url(" + backgroundImage.src + ") no-repeat center center";
+      backgroundImage.style.backgroundSize = "cover";
+      backgroundImage.src = "data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
     }
 
     document.body.style.height = bodyHeight + "px";
