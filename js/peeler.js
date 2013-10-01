@@ -4,6 +4,7 @@
   var root = this,
       Peeler = function() {},
       articles = document.querySelectorAll("article"),
+      backgroundImages = document.querySelectorAll(".background"),
       viewportWidth = root.innerWidth,
       aspectRatio = 1200/1440,
       bodyHeight = 0,
@@ -13,7 +14,8 @@
     var article,
         i,
         len,
-        height;
+        height,
+        backgroundImage;
 
     root.onscroll = function(event) {
       var yOffset = window.pageYOffset,
@@ -63,6 +65,12 @@
       article.style.height = height + "px";
       articleStates.push({min: bodyHeight, max: bodyHeight+height});
       bodyHeight += height;
+    }
+
+    for (i = 0, len = backgroundImages.length; i < len; i++) {
+      backgroundImage = backgroundImages[i];
+      backgroundImage.style.backgroundImage = "url(" + backgroundImage.src + ")";
+      backgroundImage.src = "";
     }
 
     document.body.style.height = bodyHeight + "px";
