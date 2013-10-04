@@ -2,7 +2,9 @@
   var ABOVE = "1000";
 
   var root = this,
-      Peeler = function() {},
+      Peeler = function(opts) {
+        this.options = opts || {};
+      },
       articles = document.querySelectorAll("article"),
       backgroundImages = document.querySelectorAll(".background"),
       viewportWidth = root.innerWidth,
@@ -12,12 +14,12 @@
 
   Peeler.prototype.bind = function(opts) {
     var article,
-        options = opts || {},
         i,
         len,
         height,
-        currentPage,
-        backgroundImage;
+        currentOffset,
+        backgroundImage,
+        prevScroll = 0;
 
     root.onscroll = function(event) {
       var yOffset = window.pageYOffset,
@@ -26,14 +28,32 @@
           triggered = false,
           below = 999,
           curr,
-          len = articles.length;
+          len = articles.length,
+          scrollingDown;
 
       for (; i < len; i++) {
         if (yOffset <= articleStates[i].max && yOffset >= articleStates[i].min) {
+          offset = -(yOffset-(articleStates[i].min));
+          scrollingDown = prevScroll < document.body.scrollTop;
+
+          // Trigger peel event when the offset reset
+          if (offset > currentOffset) {
+            // If we are scrolling down, trigger next callback
+            if (scrollingDown && typeof this.options.nextCallback === "function") {
+              this.options.nextCallback(articles[i]);
+            } else {
+              // TODO: Previous callback here? Not exactly sure why
+              // that'd be useful right now though
+            }
+          }
+
+          prevScroll = document.body.scrollTop;
+          currentOffset = offset;
+
           articles[i].style.marginTop = -(yOffset-(articleStates[i].min)) + "px";
           articles[i].style.zIndex = ABOVE;
           triggered = true;
-          currentPage = curr = i;
+          curr = i;
           break;
         }
       }
@@ -55,7 +75,7 @@
           articles[0].style.marginTop = "0px";
           articles[0].style.zIndex = ABOVE;
       }
-    };
+    }.bind(this);
 
     articles[0].style.zIndex = "2";
 
