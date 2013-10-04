@@ -10,11 +10,13 @@
       bodyHeight = 0,
       articleStates = [];
 
-  Peeler.prototype.bind = function() {
+  Peeler.prototype.bind = function(opts) {
     var article,
+        options = opts || {},
         i,
         len,
         height,
+        currentPage,
         backgroundImage;
 
     root.onscroll = function(event) {
@@ -31,13 +33,13 @@
           articles[i].style.marginTop = -(yOffset-(articleStates[i].min)) + "px";
           articles[i].style.zIndex = ABOVE;
           triggered = true;
-          curr = i;
+          currentPage = curr = i;
           break;
         }
       }
 
       for (;j < len; j++) {
-        if (i !== curr) {
+        if (i !== curr && i < len) {
           articles[i].style.marginTop = "0px";
           articles[i].style.zIndex = below--;
         }
